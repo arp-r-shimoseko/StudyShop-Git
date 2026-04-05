@@ -79,7 +79,7 @@ TaroYamada@TaroYamada dev %
   - タイトルと内容を記載する
   - create pull requestボタンを押下
 
-## コミットを取り消す消すを実践
+## コミットを取り消すを実践
 - commitを用意する
   - どこかのファイルを修正
   - git commit -m '取り消し実践'
