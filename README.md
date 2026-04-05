@@ -79,6 +79,53 @@ TaroYamada@TaroYamada dev %
   - タイトルと内容を記載する
   - create pull requestボタンを押下
 
+## コミットを取り消す消すを実践
+- commitを用意する
+  - どこかのファイルを修正
+  - git commit -m '取り消し実践'
+- git reset --soft HEAD~1
+
+## push済みのコミットを取り消す実践
+- commitを用意する
+  - どこかのファイルを修正
+  - git status
+  - git add ファイル名
+  - git commit -m '取り消し実践'
+- git pushを実行
+- git hub側にcommitがpushされたことを確認
+- ローカルでgit revert commit_idを実行
+- git push
+- git hubでrevert commitがpushされたことを確認
+
+## コンフリクトを出して修正するを実践
+- mainに移動して最新化
+  - git checkout main
+  - git fetch origin main
+  - git merge origin main
+- ブランチを作成A & 移動
+  - git checkout -b feature-A (git switch -c feature-A)
+- commitを用意する
+  - どこかのファイルを修正
+  - git status
+  - git add ファイル名
+  - git commit -m '取り消し実践'
+ 
+- mainに移動(最新化はしない)
+  - git checkout main
+- ブランチBを作成 & 移動
+  - git checkout -b feature-B (git switch -c feature-B)
+- commitを用意する
+  - ブランチBと同じ箇所を修正
+  - git status
+  - git add ファイル名
+  - git commit -m '取り消し実践'
+- コンフリクトを発生させる
+  - git checkout feature-A
+  - git merge feature-B
+- 正しい修正にしてコミットする
+- コンフリクト解除を辞める場合
+  - git merge --abort
+
 
 ## その他コマンド
 - 変更差分を確認したい
