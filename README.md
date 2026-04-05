@@ -15,7 +15,15 @@ study git system logic &amp; flow
 - ローカルPC上の任意の箇所にフォルダを用意
 - ターミナルを開く
 - 作成したフォルダのパスへ移動
-  - **cd file_path_name**
+  - **cd file_path_name** </br>
+```
+例)
+
+TaroYamada@TaroYamada ~ % cd dev
+TaroYamada@TaroYamada dev % 
+
+↑のように指定したフォルダパスに移動できていればOK
+```
 
 ### windowsの場合
 
@@ -24,17 +32,29 @@ study git system logic &amp; flow
 - インストーラーに従って構築 ( 参考サイト: https://prog-8.com/docs/git-env-win )
 - git bashを立ち上げる
 - 作成したフォルダのパスへ移動
-  - **cd file_path_name**
+  - **cd file_path_name** </br>
+```
+例)
 
-## 流れ
+TaroYamada@TaroYamada ~ % cd dev
+TaroYamada@TaroYamada dev % 
 
+↑のように指定したフォルダパスに移動できていればOK
+```
+
+## 初回の流れ
 - cloneを行う
   - git hubの対象リポジトリにアクセス: ( https://github.com/arp-r-shimoseko/StudyShop-Git )
   - CodeボタンからURLをコピー
     - SSH設定していない方はHTTPSタブを選択してコピーボタン押下
-  - 項番1で用意したターミナルcloneを実行
+  - CLIからダウンロードしたいフォルダに移動 </br>
+  ( macはターミナル、windowsはgit bash等、IDEのターミナルからでも可能 ) <br>
+  ( 今回初回構築した方は項番1で)
+    - **cd donload_folder_path**
     - **git clone repository_URL**
-- master ブランチから作業ブランチ（feature/〇〇）を切る
+
+## 基本の流れ
+- 親ブランチ(main,master,develop等)から作業ブランチ（feature/〇〇）を切る
   - **checkout -b branch_name** or **switch -c branch_name**
 - 作業ブランチ上で編集を行う
   - 任意のファイルを修正して保存(**cmd + S**)
@@ -45,11 +65,12 @@ study git system logic &amp; flow
 - ステージングされたファイルをcommitして履歴に登録する
   - **git commit -m 'commit_name'**
 - リモートリポジトリ(git hub) に 同期する(push)
-  - 初回の場合 or git configでpush先をcurrentに設定していない場合
-    - **git push --set-upstream origin master**
-  - 2回目以降の場合
+  - 作成したブランチから初回pushの場合
+    - **git push --set-upstream origin main** ( ローカルブランチをリモートに接続 )
+  - git configでpush先をcurrentに設定している場合
     - **git push**
-
+  - 同じブランチで2回目以降の場合
+    - **git push**
 - github 上で PR を作成
   - Pull requestボタンを押下
   - New Pull requestボタンを押下
@@ -57,3 +78,36 @@ study git system logic &amp; flow
   - create pull requestボタンを押下
   - タイトルと内容を記載する
   - create pull requestボタンを押下
+
+
+## その他コマンド
+- 変更差分を確認したい
+  - git diff
+- 対象ブランチとの差変更差分を比較したい
+  - git diff main..feature
+- 履歴を確認したい
+  - git log --oneline
+- 履歴やブランチ構造を確認したい
+  - git log --oneline --graph --decorate --all
+- commit履歴の詳細を調べたい
+  - git reflog
+- 誰の変更か確認したい
+  - git blame false_name
+- ブランチを削除したい
+  - git branch -D branch_name
+- push済みのcommitを取り消したい
+  - git revert commit_id
+- push前のコミットを取り消したい
+  - git reset HEAD~コミットのHEAD番号
+- 一時退避させたい(stashよりcommit + reset HEAD推奨)
+  - git stash
+- 一時退避させた内容を戻したい
+  - git stash apply
+- 一時退避させた内容戻す + 退避履歴から削除
+  - git stash pop
+- 退避履歴の確認
+  - git stash list
+- 退避リストから復元
+  - git stash apply stash@{listの番号}
+- 強制的にリモートの状態にする（危険 = 作業は全て消えます）
+  - git reset --hard origin/main
