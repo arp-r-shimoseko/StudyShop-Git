@@ -158,3 +158,15 @@ TaroYamada@TaroYamada dev %
   - git stash apply stash@{listの番号}
 - 強制的にリモートの状態にする（危険 = 作業は全て消えます）
   - git reset --hard origin/main
+
+
+  ### 斎藤さんおすすめコマンド
+  - リモートのブランチを消す
+  - git push origin :任意のリモートのブランチ名
+
+  - 今のブランチにmerge済みのブランチを調べる
+  - git branch -a --merged
+  
+  - ブランチ削除
+  - git branch -d branch_name
+  - git branch -D branch_name
